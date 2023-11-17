@@ -1,7 +1,7 @@
 const axios = require('axios');
 const { Country } = require('../db');
 
-const postData =  async () => {
+const getData =  async () => {
     try {
         const dataInDB = await Country.count();
     
@@ -34,5 +34,5 @@ const postData =  async () => {
 
 
 module.exports= {
-    postData
+    getData
 }
