@@ -7,12 +7,8 @@ module.exports = (sequelize) => {
     id: {
       type: DataTypes.STRING,
       primaryKey: true,
-      unique: true,
       validate: {
-        isAlpha: true,
-        length: {
-          minimum: 3
-        }
+        len: [3, 3]
       },
       allowNull: false
     },
@@ -36,11 +32,12 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING
     },
     area: {
-      type: DataTypes.STRING
+      type: DataTypes.FLOAT,
+      allowNull: true
     },
     population: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
     }
   });
 };

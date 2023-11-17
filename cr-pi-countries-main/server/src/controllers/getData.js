@@ -2,6 +2,7 @@ const axios = require('axios');
 const { Country } = require('../db');
 
 const getData =  async () => {
+  console.log('Data from API charging in data base');
     try {
         const dataInDB = await Country.count();
     
@@ -14,7 +15,7 @@ const getData =  async () => {
                 flag: api.flags.png,
                 continent: api.continents[0],
                 capital: api.capital ? api.capital[0] : "Capital not found",
-                subregion: api.subregion ? api.subregion : "Antartic",
+                subregion: api.subregion ? api.subregion : "Antarctica",
                 area: api.area,
                 population: api.population
             }
