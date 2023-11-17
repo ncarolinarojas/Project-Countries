@@ -20,7 +20,7 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    flagImage: {
+    flag: {
       type: DataTypes.STRING,
       allowNull: false
     },
