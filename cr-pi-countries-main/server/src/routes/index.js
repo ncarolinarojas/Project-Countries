@@ -2,7 +2,8 @@ const { Router } = require("express");
 const { getCountries } = require('../controllers/getCountries');
 const { getCountryById } = require('../controllers/getCountryById');
 const { postActivity } = require('../controllers/postActivity');
-const {getActivities} = require('../controllers/getActivities');
+const { getActivities } = require('../controllers/getActivities');
+const { deleteActivity } = require('../controllers/deleteActivity')
 
 const router = Router();
 
@@ -12,20 +13,12 @@ router.get('/getCountries', async (req, res) => {
         .catch(err => res.status(500).json(err))
 })
 
-router.get('/getCountry/:id', async (req, res) => {
-    try {
-        const { id } = req.params;
-        const country = await getCountryById(id);
-        res.status(201).json(country)
-    } catch (error) {
-        res.status(400).json({ error: error.message })
-    }
-})
+router.get("/countries/:id", getCountryById);
 
 router.post('/createActivity', async (req, res) => {
     try {
-        const { name, difficulty, hours, season } = req.body
-        const newActivity = await postActivity(name, difficulty, hours, season)
+        const { name, difficulty, hours, season, countries } = req.body
+        const newActivity = await postActivity(name, difficulty, hours, season, countries)
         res.status(200).json(newActivity)
     } catch (error) {
         res.status(400).json({ error: error.message })
@@ -33,25 +26,17 @@ router.post('/createActivity', async (req, res) => {
 })
 
 router.get('/getActivities', async (req, res) => {
-    try{
+    try {
         const activities = await getActivities()
         res.status(200).json(activities)
     } catch (error) {
-        res.status(400).json({error: error.message})
+        res.status(400).json({ error: error.message })
     }
 })
+
+router.delete("/activity/:id", deleteActivity);
 
 
 
 
 module.exports = router;
-
-//router.get("/countries/:id", getCountryById); OK
-
-//router.get("/countries", getCountry); OK
-
-//router.post("/activity", postActivity); ok
-
-//router.get("/activity", getActivities); ok
-
-//router.delete("/activity", deleteActivity);

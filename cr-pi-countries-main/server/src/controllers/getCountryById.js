@@ -1,13 +1,26 @@
-const { Country } = require('../db');
+const { Country, Activity } = require("../db");
 
-const getCountryById = async (idCountry) => {
-    const countryFound = await Country.findByPk(idCountry)
-    return countryFound
-}
 
-//Falta la lógica para que también traiga las actividades turisticas
-//Que estan con ese país
+const getCountryById = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const idResponse = await Country.findOne({
+      where: { id: id },
+      include: Activity,
+    });
+
+    if (!idResponse) {
+      res.status(404).send({ msg: "Id country not found" });
+    } else {
+      res.status(200).send(idResponse);
+    }
+  } catch (err) {
+    res.status(500).send({ msg: "Error getting data" });
+  }
+};
+
 
 module.exports = {
-    getCountryById
-}
+  getCountryById
+};
