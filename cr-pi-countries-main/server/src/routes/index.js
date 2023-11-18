@@ -9,7 +9,7 @@ const router = Router();
 
 router.get('/getCountries', async (req, res) => {
     await getCountries()
-        .then(country => res.json(country))
+        .then(country => res.status(200).json(country))
         .catch(err => res.status(500).json(err))
 })
 
