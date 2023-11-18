@@ -1,13 +1,14 @@
 const { Activity } = require('../db');
 
-const postActivity =  async (req, res) => {
-    const {
+const postActivity =  async (name, difficulty, hours, season) => {
+    const newActivity = await Activity.create({
         name,
-        difficulty, 
+        difficulty,
         hours,
         season
-    } = req.body
-    
+    })
+
+    return newActivity
 }
 
 module.exports = {

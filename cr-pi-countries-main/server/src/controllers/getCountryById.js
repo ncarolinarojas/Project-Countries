@@ -1,7 +1,7 @@
 const { Country } = require('../db');
 
-const getCountry = async (idCountry) => {
-    const countryFound = await Country.findOne(idCountry)
+const getCountryById = async (idCountry) => {
+    const countryFound = await Country.findByPk(idCountry)
     return countryFound
 }
 
@@ -9,5 +9,5 @@ const getCountry = async (idCountry) => {
 //Que estan con ese país
 
 module.exports = {
-    getCountry
+    getCountryById
 }

@@ -6,17 +6,21 @@ module.exports = (sequelize) => {
   sequelize.define('Activity', {
     id: {
       type: DataTypes.INTEGER,
+      autoIncrement: true,
       primaryKey: true,
-      unique: true,
-      allowNull: false
+      allowNull: false,
     },
     name: {
         type: DataTypes.STRING,
         allowNull: false
     },
     difficulty: {
-        type: DataTypes.ENUM("1", "2", "3", "4", "5"),
-        allowNull: false
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        validate: {
+          min: 1,
+          max: 5
+        }
     },
     hours: {
         type: DataTypes.INTEGER
