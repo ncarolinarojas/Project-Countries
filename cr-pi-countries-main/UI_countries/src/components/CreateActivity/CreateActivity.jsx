@@ -35,8 +35,25 @@ const CreateActivity = () => {
 
     const handleChange = (event) => {
         const property = event.target.name;
-        const value = event.target.value;
-        setActivity({ ...activity, [property]: value })
+        let value = event.target.value;
+    
+        // For the countries, update the array based on checked/unchecked checkboxes
+        if (property === 'countries') {
+            const countryId = event.target.value;
+            let updatedCountries = [...activity.countries];
+    
+            if (event.target.checked) {
+                // If checkbox is checked, add the country ID to the array
+                updatedCountries.push(countryId);
+            } else {
+                // If checkbox is unchecked, remove the country ID from the array
+                updatedCountries = updatedCountries.filter((id) => id !== countryId);
+            }
+    
+            value = updatedCountries;
+        }
+    
+        setActivity({ ...activity, [property]: value });
     }
 
     const handleSubmit = (event) => {
@@ -66,6 +83,8 @@ const CreateActivity = () => {
             .catch((error) => {
                 alert(error)
             });
+
+            console.log('Activity data:', activity);
     };
 
 
@@ -86,11 +105,11 @@ const CreateActivity = () => {
                 <select
                     name="difficulty"
                     onChange={handleChange}>
-                    <option value={activity.difficulty}>{1}</option>
-                    <option value={activity.difficulty}>{2}</option>
-                    <option value={activity.difficulty}>{3}</option>
-                    <option value={activity.difficulty}>{4}</option>
-                    <option value={activity.difficulty}>{5}</option>
+                    <option value={activity.difficulty=1}>{1}</option>
+                    <option value={activity.difficulty=2}>{2}</option>
+                    <option value={activity.difficulty=3}>{3}</option>
+                    <option value={activity.difficulty=4}>{4}</option>
+                    <option value={activity.difficulty=5}>{5}</option>
                 </select>
                 <span>{error.difficulty}</span>
             </div>
@@ -109,28 +128,29 @@ const CreateActivity = () => {
                 <select
                     name="season"
                     onChange={handleChange}>
-                    <option value={activity.season}>{"Summer"}</option>
-                    <option value={activity.season}>{"Autumn"}</option>
-                    <option value={activity.season}>{"Winter"}</option>
-                    <option value={activity.season}>{"Spring"}</option>
+                    <option value={activity.season="Summer"}>Summer</option>
+                    <option value={activity.season="Autumn"}>Autumn</option>
+                    <option value={activity.season="Winter"}>Winter</option>
+                    <option value={activity.season="Spring"}>Spring</option>
                 </select>
                 <span>{error.season}</span>
             </div>
             <div>
-                <p>Chose the countries where you can do this activity</p>
-                <label htmlFor="countries">Countries:</label>
-                <select
-                    name="countries"
-                    value={activity.countries}
-                    onChange={handleChange}
-                >
-                    <option value="">Select a country</option>
-                    {countryOptions.map((country) => (
-                        <option key={country.id} value={country.id}>
-                            {country.name}
-                        </option>
-                    ))}
-                </select>
+                <p>Choose the countries where you can do this activity</p>
+                <label>Countries:</label>
+                {countryOptions.map((country) => (
+                    <div key={country.id}>
+                        <input
+                            type="checkbox"
+                            id={country.id}
+                            name="countries"
+                            value={country.id}
+                            checked={activity.countries.includes(country.id)}
+                            onChange={handleChange}
+                        />
+                        <label htmlFor={country.id}>{country.name}</label>
+                    </div>
+                ))}
                 <span>{error.countries}</span>
             </div>
             <button type="submit">Submit</button>
