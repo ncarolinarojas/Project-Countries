@@ -22,7 +22,6 @@ const postActivity = async (name, difficulty, hours, season, countries) => {
 
         return newActivity;
     } else {
-        // Manejo de error si falta algún parámetro
         throw new Error('Missing information');
     }
 };
