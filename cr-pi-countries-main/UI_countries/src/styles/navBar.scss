@@ -1,0 +1,27 @@
+@use 'variables' as v;
+
+
+.navbar {
+    background-image: url('../assets/towereiffel.png');
+    &__menu{
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        a {
+            text-decoration: none;
+            font-size: 20px;
+            font-family: 'Josefin Sans';
+            font-weight: bold;
+            color: white;
+            &:hover{
+                color: black;
+            }
+            &.active{
+                color: yellow;
+            }
+            &:active{
+                transform: translateY(2px);
+            }
+        }
+    }
+}
