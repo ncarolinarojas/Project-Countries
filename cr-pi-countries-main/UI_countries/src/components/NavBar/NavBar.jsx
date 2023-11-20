@@ -9,6 +9,7 @@ const NavBar = () => {
         <img src={logo} alt="logo" style={{maxWidth: '200px'}}/>
         <NavLink to={'/home'}> Home </NavLink>
         <NavLink to={'/createActivity'}> Create Activity</NavLink>
+        <NavLink to={'/activities'}> Activities </NavLink>
         </div>
     </nav>
   )

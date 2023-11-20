@@ -5,6 +5,7 @@ import CreateActivity from './components/CreateActivity/CreateActivity';
 import Home from './components/Views/Home/Home';
 import Details from './components/Views/Details/Details';
 import NavBar from './components/NavBar/NavBar';
+import ActivityView from './components/Views/Activity/ActivityView';
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
       <Route path='/home' element={<Home/>}/>
       <Route path='/createActivity' element={<CreateActivity/>}/>
       <Route path='/country/:id' element={<Details/>}></Route>
+      <Route path='/activities' element={<ActivityView/>}/>
     </Routes>
     </>
   )

@@ -1,23 +1,29 @@
-import { DELETE_ACTIVITY } from "./action-types";
-
 const initialState = {
-    activities: []
-}
-
-const reducer = (state = initialState, action) => {
+    activities: [],
+    loading: false,
+    error: null,
+  };
+  
+  const activitiesReducer = (state = initialState, action) => {
     switch (action.type) {
-        case DELETE_ACTIVITY:
-            return {
-                ...state,
-                activities: state.activities.filter((idAct) => {
-                    idAct.id !== Number(action.payload)
-                })
-            }
-        default:
-            return {
-                ...state
-            }
+      case 'FETCH_ACTIVITIES_SUCCESS':
+        return {
+          ...state,
+          activities: action.payload,
+          loading: false,
+          error: null,
+        };
+      case 'FETCH_ACTIVITIES_FAILURE':
+        return {
+          ...state,
+          activities: [],
+          loading: false,
+          error: action.payload,
+        };
+      default:
+        return state;
     }
-}
-
-export default reducer
+  };
+  
+  export default activitiesReducer;
+  
