@@ -17,8 +17,8 @@ const CreateActivity = () => {
 
     const [error, setError] = useState({
         name: "",
-        difficulty: 0,
-        hours: 0,
+        difficulty: "",
+        hours: "",
         season: "",
         countries: []
     })
@@ -85,10 +85,12 @@ const CreateActivity = () => {
 
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className='form'>
+            <h1>Create activities</h1>
+            <p>Please, create activities to organize your future trips</p>
             <div>
-                <p>Write the activity name</p>
-                <label htmlFor="name">Name:</label>
+                <p>Write the activity name:</p>
+                <label htmlFor="name">Activity name: </label>
                 <input name="name"
                     value={activity.name}
                     onChange={handleChange}
@@ -143,7 +145,7 @@ const CreateActivity = () => {
                 </select>
                 <span>{error.countries}</span>
             </div>
-            <button type="submit">Submit</button>
+            <button type="submit" className='submit'>Submit</button>
         </form>
     )
 }

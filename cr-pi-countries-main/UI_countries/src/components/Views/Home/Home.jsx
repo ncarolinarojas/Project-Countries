@@ -49,9 +49,11 @@ const Home = () => {
                 ))}
             </div>
 
-            <div>
+            <div className="pages">
                 {Array.from({ length: Math.ceil(filteredCountries.length / countriesPerPage) }).map((_, index) => (
-                    <button key={index + 1} onClick={() => paginate(index + 1)}>
+                    <button key={index + 1} onClick={() => paginate(index + 1)}
+                    className="pages__item"
+                    >
                         {index + 1}
                     </button>
                 ))}

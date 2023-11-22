@@ -5,7 +5,6 @@ import CreateActivity from './components/CreateActivity/CreateActivity';
 import Home from './components/Views/Home/Home';
 import Details from './components/Views/Details/Details';
 import NavBar from './components/NavBar/NavBar';
-import Activities from './components/Views/Activity/Activities';
 
 function App() {
 
@@ -21,7 +20,6 @@ function App() {
       <Route path='/home' element={<Home/>}/>
       <Route path='/createActivity' element={<CreateActivity/>}/>
       <Route path='/country/:id' element={<Details/>}></Route>
-      <Route path='/activities' element={<Activities/>}/>
     </Routes>
     </>
   )

@@ -78,3 +78,17 @@
         font-weight: bold;
     }
 }
+
+.pages{
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    margin: 10px;
+
+    &__item{
+        border-radius: 10px;
+        font-family: 'Josefin Sans';
+        font-weight: bold;
+        padding: 3px;
+    }
+}

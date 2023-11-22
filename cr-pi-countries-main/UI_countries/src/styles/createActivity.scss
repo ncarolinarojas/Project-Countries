@@ -2,3 +2,37 @@
     overflow-y: scroll;
     height: 100%;
 }
+
+.form {
+    display: block;
+    text-align: center;
+    margin: 30px;
+    font-family: 'Josefin Sans';
+    font-weight: bold;
+}
+
+.form h1{
+    margin: 20px;
+    font-family: 'Josefin Sans';
+}
+
+.form p{
+    margin: 20px;
+    font-family: 'Josefin Sans';
+}
+
+.submit {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 15px;
+    text-align: center;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    margin: 10px;
+}
+
+.form span{
+    color: red;
+    font-size: smaller;
+}
