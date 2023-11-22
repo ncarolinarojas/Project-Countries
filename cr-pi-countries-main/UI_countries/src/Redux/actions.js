@@ -1,11 +1,30 @@
 import axios from 'axios';
-import { FETCH_ACTIVITIES_FAILURE, FETCH_ACTIVITIES_SUCCESS } from './action-types';
+import { DELETE_ACTIVITY, GET_DATA } from './action-types';
 
-export const fetchActivities = () => async (dispatch) => {
-  try {
-    const response = await axios.get('http://127.0.0.1:3001/getActivities');
-    dispatch({ type: FETCH_ACTIVITIES_SUCCESS, payload: response.data });
-  } catch (error) {
-    dispatch({ type: FETCH_ACTIVITIES_FAILURE, payload: error.message });
-  }
+export const getData = () => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get('http://127.0.0.1:3001/getActivities');
+      dispatch({
+        type: GET_DATA,
+        payload: response.data
+      });
+    } catch (error) {
+      console.error('Error getting data', error);
+    }
+  };
+};
+
+export const deleteActivity = (id) => {
+  return async (dispatch) => {
+    try {
+      await axios.delete(`http://127.0.0.1:3001/activity/${id}`);
+      dispatch({
+        type: DELETE_ACTIVITY,
+        payload: id,
+      });
+    } catch (error) {
+      console.error('Error deleting activity:', error);
+    }
+  };
 };
